@@ -22,6 +22,8 @@ export class Controller {
     }
 
     if (method === 'POST') {
+      if (id) this.userHandler.createUser(req, res)
+
       //
     }
   }

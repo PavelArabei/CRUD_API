@@ -10,5 +10,6 @@ export const enum STATUS_CODE {
 export const enum MESSAGES {
   INVALID_URL = 'Invalid URL',
   INVALID_ID = 'Invalid user id',
+  INVALID_REQUEST_BODY = 'Invalid request body',
   NON_EXISTENT = 'This user does`t exist',
 }
