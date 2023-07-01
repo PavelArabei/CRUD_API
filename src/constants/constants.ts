@@ -12,4 +12,5 @@ export const enum MESSAGES {
   INVALID_ID = 'Invalid user id',
   INVALID_REQUEST_BODY = 'Invalid request body',
   NON_EXISTENT = 'This user does`t exist',
+  NOTHING = '',
 }

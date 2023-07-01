@@ -9,22 +9,25 @@ export class Controller {
     const { url, method } = req
     const startUrl = '/api/users'
 
-    if (!url || !url.startsWith(startUrl)) {
+    try {
+      if (!url || !url.startsWith(startUrl)) throw new Error()
+
+      const [id, someAdditionalUrl] = url.split('/').slice(3)
+
+      if (someAdditionalUrl) throw new Error()
+      if (method === 'POST' && id) throw new Error()
+      if (method === 'PUT' && !id) throw new Error()
+
+      if (method === 'GET' && !id) this.userHandler.getAllUsers(req, res)
+      if (method === 'POST' && !id) this.userHandler.createUser(req, res)
+
+      if (id) {
+        if (method === 'GET') this.userHandler.getUserById(req, res, id)
+        if (method === 'PUT') this.userHandler.updateUser(req, res, id)
+        if (method === 'DELETE') this.userHandler.deleteUser(req, res, id)
+      }
+    } catch (err) {
       this.sendResponse(res, STATUS_CODE.NOT_EXIST, MESSAGES.INVALID_URL)
-      return
-    }
-
-    const [api, users, id] = url.split('/')
-
-    if (method === 'GET') {
-      if (url === startUrl) this.userHandler.getAllUsers(req, res)
-      else this.userHandler.getUserById(req, res, id)
-    }
-
-    if (method === 'POST') {
-      if (id) this.userHandler.createUser(req, res)
-
-      //
     }
   }
 
