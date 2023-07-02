@@ -7,7 +7,7 @@
   "scripts": {
     "build2": "tsc -p tsconfig.build.json",
     "build": "npx tsc",
-    "start": "npm run build && node build/main",
+    "start:prod": "npm run build && node build/main",
     "start:dev": "npx nodemon",
     "start:multy": "npx nodemon --multi",
     "lint": "npx eslint ./src",
